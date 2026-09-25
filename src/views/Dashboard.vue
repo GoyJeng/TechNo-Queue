@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useActivityStore } from '../stores/activityStore'
 
 const activityStore = useActivityStore()
-
+onMounted(async () => {
+  await activityStore.load()
+})
 type Range = 'week' | 'month' | 'year'
 
 const selectedRange = ref<Range>('week')

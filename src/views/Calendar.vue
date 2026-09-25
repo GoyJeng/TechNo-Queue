@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 
 import { useActivityStore } from '../stores/activityStore'
 
@@ -11,7 +11,9 @@ import ActivityDayModal from '../components/ActivityDayModal.vue'
 import type { Activity,ActivityStatus } from '../types/activity'
 
 const activityStore = useActivityStore()
-
+onMounted(async () => {
+  await activityStore.load()
+})
 /* =========================
    Calendar state
 ========================= */
